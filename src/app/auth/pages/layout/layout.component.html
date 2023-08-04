@@ -1,0 +1,17 @@
+<section class="contenedor">
+    <div class="contenedor_left">
+        <app-carousel-little
+        [items]="carouselData" 
+        [autoSlide]="true" 
+        [indicators]="true"
+        [controls]="false"
+        [slideInterval]="8000"
+        >
+        </app-carousel-little>
+    </div>
+    <div class="contenedor_right">
+        <router-outlet></router-outlet>
+    </div>
+</section>
+
+<app-modal></app-modal>
