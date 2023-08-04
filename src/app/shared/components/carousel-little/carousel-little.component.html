@@ -5,9 +5,10 @@
          [ngClass]="{'image-active':selectedIndex === i}" 
          class="carousel-container__items" >
 
-         <div 
-         class="body_container slideShow" 
-         [ngStyle]="{'background-image': 'url(' + item.imgFondo + ')'}">
+         <div class="body_container slideShow" 
+         [ngStyle]="{'background-image': 'url(' + item.imgFondo + ')'}"
+         [ngClass]="{'with-overlay': showOverlay}">
+            
             <img style="width: 100%;" [src]="" alt="">
 
          </div>
@@ -18,7 +19,7 @@
     
     </div>
 
-    <div *ngIf="indicators" class="carousel-dot-container">
+    <div *ngIf="indicators && items.length > 1" class="carousel-dot-container">
         <span *ngFor="let dot of items; let i=index" cLass="dot" [ngClass]="{'active': selectedIndex === i}"
             (click)="selectImage(i)">
         </span>

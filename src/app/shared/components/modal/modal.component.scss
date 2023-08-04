@@ -108,10 +108,10 @@
     border-radius: 5px;
     border: none;
     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);
-    background: #EA353B;
+    background: var(--primary-color-neutro);
 }
   .css-button-shadow-border--red:hover {
-    background-color: #f14054;
+    background-color: var(--primary-color-neutro);
   }
   .css-button-shadow-border--red:active {
     top: 2px;

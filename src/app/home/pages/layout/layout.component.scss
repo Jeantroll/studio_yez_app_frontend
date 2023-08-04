@@ -36,7 +36,7 @@
 
         .moon {
             display: flex;
-            background-color: #EA353B;
+            background-color: var(--primary-color-neutro);
             padding: 6px 10px;
             border-radius: 10px;
             color: white;
@@ -86,7 +86,7 @@
 
         .sun {
             display: flex;
-            background-color: #EA353B;
+            background-color: var(--primary-color-neutro);
             padding: 6px 10px;
             border-radius: 10px;
             color: white;
@@ -316,6 +316,13 @@
             display: flex;
             align-items: center;
             // gap: 5px;
+            padding: 0px 0 10px 0;
+            border-bottom: 1px solid var(--border-color);
+
+            svg{
+                color: var(--primary-color-neutro);
+                font-size: 35px;
+            }
 
             .image {
                 min-width: 60px;
@@ -325,7 +332,7 @@
             }
 
             img {
-                width: 45px;
+                width: 35px;
             }
 
             .header-text {
@@ -403,7 +410,7 @@
             display: flex;
             width: 35px;
             height: 35px;
-            background-color: #EA353B;
+            background-color: var(--primary-color-neutro);
             color: #fff;
             justify-content: center;
             border-radius: 50%;
@@ -459,6 +466,10 @@
                 display: flex;
                 width: 35px;
 
+                svg{
+                    color: var(--primary-color-neutro);
+                    font-size: 32px;
+                }
                 img {
                     width: 35px;
                     border-radius: 50%;

@@ -19,7 +19,7 @@ export class LoginComponent {
 
   arrayForm: formModel = {
     title: 'Iniciar sesión',
-    text: '',
+    text: 'Inicia sesión con los datos que ingresaste durante tu registro.',
     inputs: [
       {
         placeholder: 'Correo',

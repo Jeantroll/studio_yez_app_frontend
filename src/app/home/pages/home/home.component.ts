@@ -31,29 +31,29 @@ export class HomeComponent {
   cardPs: any = {
     icon:'bx bx-dock-left icon',
     coloricon:'#EA353B',
-    title:'Paz y salvo',
-    route:'cleared',
+    title:'Facturación',
+    route:'facturacion',
     subtitle: 'Comprobante de Deudas Pagadas.',
   }
   cardSc: any = {
     icon:'bx bx-calculator icon',
     coloricon:'rgb(181 215 124)',
-    title:'Simulador',
-    route:'credit-simulator',
+    title:'Ventas',
+    route:'ventas',
     subtitle: 'Encuentra tu Mejor Opción Financiera.',
   }
   cardPy: any = {
     icon:'bx bx-credit-card icon',
     coloricon:'#ffa534',
-    title:'Pagos',
-    route:'pays',
+    title:'Inventario',
+    route:'inventario',
     subtitle: 'Gestiona tus Pagos con Facilidad.',
   }
   cardCont: any = {
     icon:'bx bxs-contact icon',
     coloricon:'rgb(113 144 209)',
-    title:'Contacto',
-    route:'contact-us',
+    title:'Configuración',
+    route:'configuracion',
     subtitle: 'Estamos Aquí para Ayudarte.',
   }
 

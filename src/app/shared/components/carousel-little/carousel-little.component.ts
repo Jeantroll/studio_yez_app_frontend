@@ -12,6 +12,8 @@ export class CarouselLittleComponent {
   @Input() controls: boolean = true;
   @Input() autoSlide: boolean = false;
   @Input() slideInterval: number = 10000;
+  @Input() showOverlay: boolean = false;
+
 
   interval!: any;
   selectedIndex: number = 0;

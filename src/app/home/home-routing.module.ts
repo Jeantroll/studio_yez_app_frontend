@@ -29,7 +29,7 @@ const routes: Routes = [
         component: StocktakingComponent,
       },
       {
-        path: 'configuacion',
+        path: 'configuracion',
         component: ConfigurationComponent,
       },
       {

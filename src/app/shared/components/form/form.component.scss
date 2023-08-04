@@ -6,7 +6,7 @@ form {
     gap: 20px;
     width: 350px;
     padding: 20px;
-    color: $color-text;
+    color: var(--color-text-neutro);
 
 
 
@@ -22,10 +22,11 @@ form {
 
             svg{
                 font-size: 35px;
+                color: var(--primary-color-neutro);
             }
 
             img {
-                width: 80px;
+                width: 60px;
                 // border-radius: 50%;
             }
         }
@@ -43,6 +44,12 @@ form {
             p {
                 font-size: $base-font-size;
             }
+        }
+
+        .form_text{
+            text-align: center;
+            line-height: 18px;
+            font-size: $base-font-size;
         }
 
         .form_img {
@@ -185,7 +192,7 @@ form {
     .form_buttons {
         input[type="submit"] {
             width: 100%;
-            background-color: $primary-color;
+            background-color: var(--primary-color-neutro);
             color: white;
             border: none;
             border-radius: 5px;
@@ -221,7 +228,7 @@ form {
         a {
             text-decoration: none;
             font-size: $base-font-size;
-            color: $color-text;
+            color: var(--color-text-neutro);
             cursor: pointer;
         }
     }
@@ -233,7 +240,7 @@ form {
 
 .text-danger {
     width: 100%;
-    color: $primary-color;
+    color: var(--primary-color-neutro);
     font-size: 12px;
     text-align: center;
     display: flex;

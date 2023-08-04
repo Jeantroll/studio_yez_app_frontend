@@ -9,20 +9,11 @@ import { ICarouselLittleItem } from 'src/app/shared/models/carousel-little-item.
 export class LayoutComponent {
 
   carouselData: ICarouselLittleItem[] = [
-    { 
-      
-      imgFondo: 'https://i.ibb.co/KLZHX4P/i-Stock-1363828399.jpg',  
-    
+    {      
+      imgFondo: 'https://i.ibb.co/Ss7xkhC/man-2425121-1280.jpg'
     },
-    { 
-      
-      imgFondo: 'https://i.ibb.co/hmkQRXL/i-Stock-1475032404.jpg',
-     
-    },
-    { 
-      
-      imgFondo: 'https://i.ibb.co/RDbSV40/i-Stock-962842394-1.jpg',
-     
+    {      
+      imgFondo: 'https://i.ibb.co/wsrQZ3V/hangers-1850082-1280.jpg'
     }
   ];
 

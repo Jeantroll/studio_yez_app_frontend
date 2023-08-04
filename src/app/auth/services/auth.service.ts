@@ -84,6 +84,7 @@ export class AuthService {
 
     return this.apiPost.getDebtInfo(UrlApi, paramsBody, headers)
       .pipe(
+      retry(2),
       tap((resp) => {
         if (resp) {
 

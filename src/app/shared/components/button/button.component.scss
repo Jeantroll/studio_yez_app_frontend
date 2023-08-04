@@ -1,7 +1,7 @@
 @import '../../../../styles.scss';
 
 .action-btn {
-	background: $primary-color;
+	background: var(--primary-color-neutro);
 	border: none;
 	font-size: $small-font-size;
 	width: 100%;
@@ -16,7 +16,7 @@
 	display: block;
 
 	&:hover {
-		background-color: #EA353B;
+		background-color: var(--primary-color-neutro);
 	}
 
 	&::after {
