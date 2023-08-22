@@ -1,1 +1,55 @@
-<p>sales works!</p>
+<div class="container">
+
+    <div class="products-header">
+
+        
+
+        <div class="products-header_pruduct">
+            <span><i class="fa-solid fa-scale-unbalanced"></i></span>
+            <p>Registro de ventas</p>
+            <p>Ingresa y edita las ventas</p>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="product-movements">
+            <app-button-click label="Generar Venta" [buttonMethod]="doSomething"></app-button-click>
+            <!-- <p class="home_title">Ventas</p> -->
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cantidad</th>
+                            <th>Precio mayorista</th>
+                            <th>Precio unidad</th>
+                            <th>Precio venta</th>
+                            <th>Vendedor</th>
+                            <th>Editar</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let data of data.data | filtro:page">
+                        <tr>
+                            <td><span><i class="fa-solid fa-hashtag"></i></span> <span>{{data.cantidad}}</span></td>
+                            <td>{{data.precio_mayorista | customNumber}}</td>
+                            <td>{{data.precio_unidad | customNumber}}</td>
+                            <td>{{data.precio_venta | customNumber}}</td>
+                            <td>{{data.vendedor}}</td>
+                            <td routerLink="/home/ventas-form/{{data.id}}" style="color: var(--secondary-color-1); font-size: 18px; cursor: pointer;"><i class="fa-regular fa-pen-to-square"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="paginate-yez">
+                <span (click)="prevPage()"><i class="fa-solid fa-chevron-left"></i></span>
+                <span></span>
+                <span (click)="nextPage()"><i class="fa-solid fa-chevron-right"></i></span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

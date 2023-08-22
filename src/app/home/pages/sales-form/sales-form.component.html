@@ -1,0 +1,50 @@
+<div class="container">
+
+    <div class="container-left">
+        <span (click)="doSomething()" class="back">
+            <i class="fa-solid fa-arrow-left"></i>
+        </span>
+        <form (ngSubmit)="getSubmit()" [formGroup]="salesForm" class="page slide-page flash">
+
+            <div class="form_header">
+                <div class="form_title">
+                    <h2>Agregar Venta</h2>
+                </div>
+            </div>
+
+            <div class="content-input">
+                <label class="label" for="">Producto</label>
+                <div class="form__field"  [formGroup]="salesForm">
+                    <select name="select" formControlName="products" (change)="changeProduct()">
+                        <option value="" hidden>Ingresa el producto</option>
+                        <option name="select" *ngFor="let item of selects" [value]="item.id">{{item.denominacion}}</option>
+                    </select>
+                    <div class="select-arrow">
+                        <div class="arrow-down"></div>
+                    </div>
+                </div>
+            </div>
+
+            <app-input [form]="salesForm" [arrayInput]="arrayInput1">
+            </app-input>
+
+            <app-input [form]="salesForm" [arrayInput]="arrayInput3">
+            </app-input>
+
+            <app-input [form]="salesForm" [arrayInput]="arrayInput4">
+            </app-input>
+
+            <app-input [form]="salesForm" [arrayInput]="arrayInput5">
+            </app-input>
+
+            <app-input [form]="salesForm" [arrayInput]="arrayInput6">
+            </app-input>
+
+            <div class="form-button">
+                <app-button [label]="'Guardar'" [myForm]="salesForm"></app-button>
+                <!-- <app-button-click [label]="'Ver todas'" [buttonMethod]="doSomething"></app-button-click> -->
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 })
 export class ApiPostService {
 
-
   constructor(private http: HttpClient) { }
 
   getDebtInfo(url: string, dataFormBody: any,  httpHeaders: any):Observable<any>{

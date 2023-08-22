@@ -2,7 +2,7 @@
     <label *ngIf="arrayInput.labelExists" class="label" for="">{{arrayInput.name}}</label>
     <div class="container-body">
         <div class="form__field" [formGroup]="form">
-            <label class="label-izq">
+            <label class="label-izq" *ngIf="arrayInput.iconExists">
                 <span><i [class]="arrayInput.icon"></i></span>
             </label>
             <input 

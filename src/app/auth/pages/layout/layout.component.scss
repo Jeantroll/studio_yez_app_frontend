@@ -13,12 +13,18 @@
 
 @media (max-width: 1000px) {
 
-    .contenedor{
+    .contenedor {
         justify-content: center;
         align-items: center;
+
         &_left {
             display: none;
         }
+
+        &_right {
+            flex-basis: 100%;
+        }
+
     }
 
 

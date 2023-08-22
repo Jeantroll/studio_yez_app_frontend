@@ -29,40 +29,54 @@
     
                     <ul class="menu-links">
  
-                        <li class="nav-link" routerLinkActive="active">
+                        <li class="nav-link" (click)="isMobile? toggleClose(): ''" routerLinkActive="active">
                             <a routerLink="./home">
                                 <i class='bx bx-home-alt icon' ></i>
                                 <span class="text nav-text">Home</span>
                             </a>
-                        </li>
-
-                        <li class="nav-link" routerLinkActive="active">
-                            <a routerLink="./facturacion">
-                                <i class="fa-solid fa-file-lines icon"></i>
-                                <span class="text nav-text">Facturación</span>
-                            </a>
-                        </li>   
+                        </li> 
                         
-                        <li class="nav-link" routerLinkActive="active">
+                        <li class="nav-link" (click)="isMobile? toggleClose(): ''" routerLinkActive="active">
                             <a routerLink="./ventas">
                                 <i class="fa-solid fa-file-invoice-dollar icon"></i>
                                 <span class="text nav-text">Ventas</span>
                             </a>
                         </li> 
 
-                        <li class="nav-link" routerLinkActive="active">
+                        <li class="nav-link" (click)="isMobile? toggleClose(): ''" routerLinkActive="active">
+                            <a routerLink="./gastos">
+                                <i class="fa-solid fa-money-bill-wave icon"></i>
+                                <span class="text nav-text">Gastos</span>
+                            </a>
+                        </li> 
+
+                        <li class="nav-link" (click)="isMobile? toggleClose(): ''" routerLinkActive="active">
+                            <a routerLink="./productos">
+                                <i class="fa-brands fa-product-hunt icon"></i>
+                                <span class="text nav-text">Productos</span>
+                            </a>
+                        </li> 
+
+                        <!-- <li class="nav-link" routerLinkActive="active">
                             <a routerLink="./inventario"> 
                                 <i class="fa-solid fa-receipt icon"></i>
                                 <span class="text nav-text">Inventario</span>
                             </a>
-                        </li> 
+                        </li>  -->
 
-                        <li class="nav-link" routerLinkActive="active">
+                        <!-- <li class="nav-link" routerLinkActive="active">
                             <a routerLink="./configuracion">
                                 <i class="fa-solid fa-wrench icon"></i>
                                 <span class="text nav-text">Configuación</span>
                             </a>
-                        </li> 
+                        </li> -->
+                        
+                        <!-- <li class="nav-link" routerLinkActive="active">
+                            <a routerLink="./facturacion">
+                                <i class="fa-solid fa-file-lines icon"></i>
+                                <span class="text nav-text">Facturación</span>
+                            </a>
+                        </li>  -->
 
                     </ul>
                     
@@ -129,3 +143,5 @@
 </div>
 
 <app-modal></app-modal>
+<app-modal-change></app-modal-change>
+

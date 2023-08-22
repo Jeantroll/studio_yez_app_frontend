@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { ThemeService } from 'src/app/shared/services/theme-service.service';
 import { HostListener } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -17,22 +18,27 @@ export class LayoutComponent {
   screenWidth!: number;
   isMobile!: boolean; 
   isOpen: boolean = false;
+  public usuario: any = {};
+
+  sub$! : Subscription;
 
 
-  
-  get usuario(){
-    return this.auth.usuario;
-  }
+
+  // get usuario(){
+  //   return this.auth.usuario;
+  // }
 
   constructor(
     public themeService: ThemeService,
     private auth:AuthService
     ) {}
 
-
   ngOnInit(): void {
    
-    
+    this.sub$ = this.auth.getUsuario.subscribe(usuario => {
+      this.usuario = usuario;
+    });
+
     this.getScreenSize();
     
     const storedTheme = localStorage.getItem('theme');
@@ -53,6 +59,10 @@ export class LayoutComponent {
     }
     
   }
+
+  ngOnDestroy(): void{
+    if(this.sub$) this.sub$.unsubscribe();  
+  };
 
 
   toggleTheme() {

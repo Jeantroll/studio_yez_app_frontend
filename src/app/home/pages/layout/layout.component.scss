@@ -570,7 +570,7 @@
   }
 
 
-@media (max-width: 1000px) {
+  @media (max-width: 768px) {
 
     .sidebar {
         width: 250px;
@@ -590,15 +590,17 @@
             .home_header_perfil {
                 gap: 20px;
 
-                .home_header_perfil_user{
-                    gap: 0px;
+                .home_header_perfil_user {
+                    gap: 10px;
 
-                    .mode{
+                    .mode {
                         margin-right: 0px;
                     }
-                    .change{
+
+                    .change {
                         margin-right: 0px;
                     }
+
                     p {
                         display: none;
                     }
@@ -607,7 +609,7 @@
         }
 
         .home_route {
-            padding: 100px 65px;
+            padding: 100px 20px;
         }
     }
 

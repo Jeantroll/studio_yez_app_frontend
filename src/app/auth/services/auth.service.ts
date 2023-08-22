@@ -4,7 +4,7 @@ import { environments } from 'src/environments/environments';
 import { Router } from '@angular/router';
 import { ApiPostService } from 'src/app/shared/services/api-post.service';
 import { usuarioModel } from '../models/usuario.model';
-import { Observable, catchError, map, of, pipe, retry, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, of, pipe, retry, tap } from 'rxjs';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { modalModel } from 'src/app/shared/models/modal.model';
 import { ButtonService } from 'src/app/shared/services/button.service';
@@ -15,8 +15,11 @@ import { EncryptationService } from 'src/app/shared/services/encryptation.servic
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+
   private baseUrl: string = environments.baseUrl;
   private _usuario!: usuarioModel;
+  private _usuarioSubject = new BehaviorSubject<any>(this._usuario);
+
 
   constructor(
     private apiPost: ApiPostService,
@@ -26,10 +29,13 @@ export class AuthService {
     private modalService: ModalService
   ) {}
 
-  get usuario() {
-    return { ...this._usuario };
+  set setUsuario(usuario: any) {
+    this._usuarioSubject.next(usuario);
   }
 
+  get getUsuario(): Observable<any> {
+    return this._usuarioSubject.asObservable();
+  }
 
   register(name: string,email: string,password: string,password_confirmation: string) {
 
@@ -48,14 +54,24 @@ export class AuthService {
     .pipe(
       tap(resp => {
 
+          const amount:number = 700000;
+          const sales:number = 700000;
+          const pays:number = 700000;
+          const total:number = 700000;
+
           this._usuario = {
             token: resp.token,
-            rol: resp.user.role.name,
-            routes: resp.routes,
             email: resp.user?.email!,
             id: resp.user?.id!,
             name: resp.user?.name!,
+            amount:resp.monto_diario,
+            bills:resp.total_gastos,
+            sales:resp.total_ventas,
+            total:resp.balance_diario,
+            salesD: resp.cantidad_ventas
           };
+
+          this.setUsuario = this._usuario;
 
           let UsuarioEncrypt = btoa(this.encryptation.encrypt(JSON.stringify(this._usuario)));
           
@@ -71,7 +87,6 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    console.log(email,password);
     
     const UrlApi = `${this.baseUrl}/api/login`;
 
@@ -87,15 +102,20 @@ export class AuthService {
       retry(2),
       tap((resp) => {
         if (resp) {
-
+          console.log(resp.token); 
           this._usuario = {
             token: resp.token,
-            rol: resp.user.role.name,
-            routes: resp.routes,
             email: resp.user?.email!,
             id: resp.user?.id!,
             name: resp.user?.name!,
+            amount:resp.monto_diario,
+            bills:resp.total_gastos,
+            sales:resp.total_ventas,
+            total:resp.balance_diario,
+            salesD: resp.cantidad_ventas
           };
+          
+          this.setUsuario = this._usuario;
 
           let UsuarioEncrypt = btoa(this.encryptation.encrypt(JSON.stringify(this._usuario)));
 
@@ -124,6 +144,7 @@ export class AuthService {
     if (localStorage.getItem('usuario')) {
       
       this._usuario = this.getItemFromLocalStorage('usuario');
+      this.setUsuario = this._usuario;
 
     }
 

@@ -9,6 +9,12 @@ import { StocktakingComponent } from './pages/stocktaking/stocktaking.component'
 import { InvoicesComponent } from './pages/invoices/invoices.component';
 import { SalesComponent } from './pages/sales/sales.component';
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
+import { SalesFormComponent } from './pages/sales-form/sales-form.component';
+import { CardDetailsComponent } from './components/card-details/card-details.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { BillsComponent } from './pages/bills/bills.component';
+import { BillsFormComponent } from './pages/bills-form/bills-form.component';
+import { ProductsFormComponent } from './pages/products-form/products-form.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +24,12 @@ import { ConfigurationComponent } from './pages/configuration/configuration.comp
     InvoicesComponent,
     SalesComponent,
     ConfigurationComponent,
+    SalesFormComponent,
+    CardDetailsComponent,
+    ProductsComponent,
+    BillsComponent,
+    BillsFormComponent,
+    ProductsFormComponent,
   ],
   imports: [
     CommonModule,

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Error404Component } from './pages/error404/error404.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { CarouselLittleComponent } from './components/carousel-little/carousel-little.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormComponent } from './components/form/form.component';
 import { ButtonComponent } from './components/button/button.component';
 import { ModalComponent } from './components/modal/modal.component';
@@ -16,6 +16,14 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { CardOptionComponent } from './components/card-option/card-option.component';
 import { RouterModule } from '@angular/router';
 import { CardPayComponent } from './components/card-pay/card-pay.component';
+import { ModalChangeComponent } from './components/modal-change/modal-change.component';
+import { ButtonClickComponent } from './components/button-click/button-click.component';
+import { CustomNumberPipe } from './pipes/custom-number.pipe';
+import { FiltroPipe } from './pipes/filtro.pipe';
+import { FormatoNumericoDirective } from './directives/formato-numerico.directive';
+import { PointsLoaderComponent } from './components/points-loader/points-loader.component';
+
+
 
 
 
@@ -34,11 +42,17 @@ import { CardPayComponent } from './components/card-pay/card-pay.component';
     AccordionDirective,
     LoaderComponent,
     CardOptionComponent,
-    CardPayComponent
-
+    CardPayComponent,
+    ModalChangeComponent,
+    ButtonClickComponent,
+    CustomNumberPipe,
+    FiltroPipe,
+    FormatoNumericoDirective,
+    PointsLoaderComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     RouterModule
   ],
@@ -54,9 +68,13 @@ import { CardPayComponent } from './components/card-pay/card-pay.component';
     AccordionDirective,
     LoaderComponent,
     CardOptionComponent,
-    CardPayComponent
-
-
+    CardPayComponent,
+    ModalChangeComponent,
+    ButtonClickComponent,
+    CustomNumberPipe,
+    FiltroPipe,
+    FormatoNumericoDirective,
+    PointsLoaderComponent
 
   ]
 })

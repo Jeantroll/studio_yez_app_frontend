@@ -1,0 +1,32 @@
+<div class="container">
+
+    <div class="container-left">
+        <span (click)="doSomething()" class="back">
+            <i class="fa-solid fa-arrow-left"></i>
+        </span>
+        <form (ngSubmit)="getSubmit()" [formGroup]="billForm" class="page slide-page flash">
+
+            <div class="form_header">
+                <div class="form_title">
+                    <h2>Agregar Gasto</h2>
+                </div>
+            </div>
+
+            <app-input [form]="billForm" [arrayInput]="arrayInput1">
+            </app-input>
+
+            <!-- <app-input [form]="salesForm" [arrayInput]="arrayInput2">
+        </app-input> -->
+
+            <app-input [form]="billForm" [arrayInput]="arrayInput3">
+            </app-input>
+
+            <div class="form-button">
+                <app-button [label]="'Guardar'" [myForm]="billForm"></app-button>
+                <!-- <app-button-click [label]="'Ver todas'" [buttonMethod]="doSomething"></app-button-click> -->
+            </div>
+
+        </form>
+    </div>
+</div>
+
