@@ -8,20 +8,23 @@
     <div class="home-cupo">
         <div class="internal_mount">
          
-                <div class="container-card">
+                <div class="container-card" *Ske="skeleton(); widthLabel:'150px' heightLabel:'35px' widthInput:'100px' heightInput:'35px' type: 'label-input'">
                     <div class="container-card_amount"><span>{{amount | customNumber}}</span> <span (click)="amountOpenModal()"><i class="fa-regular fa-pen-to-square"></i></span></div>
                     <p class="container-card_amount-title">Monto inicial</p>           
                 </div>
 
-                <div class="container-card_footer">
-                    <p>Gestiona el monto inicial de operaciones diarias. 
+                <div class="container-card_footer" >
+                    <p *skeleton="skeleton(); 
+                    repeat: 4; 
+                    height: '20px'; 
+                    width: 'rand'">Gestiona el monto inicial de operaciones diarias. 
                         Edita este monto cuando necesites. 
                         Observa ventas, gastos y balance. Toma decisiones informadas para el éxito continuo</p>          
                 </div>
          
         </div>
 
-        <div class="internal_details">
+        <div class="internal_details" *Ske="skeleton(); width:'60%' heightRect1:'268px' type:'single'">
             <p class="home_title">Detalles</p>
 
             <table>
@@ -55,10 +58,10 @@
 
     <div class="home-options">
         <div class="grid">
-            <app-card-option [card]="cardPs"></app-card-option>
-            <app-card-option [card]="cardSc"></app-card-option>
-            <app-card-option [card]="cardPy"></app-card-option>
-            <app-card-option [card]="cardCont"></app-card-option>
+            <app-card-option *Ske="skeleton(); width:'100%' heightRect1:'119px' type:'single'" [card]="cardPs"></app-card-option>
+            <app-card-option *Ske="skeleton(); width:'100%' heightRect1:'119px' type:'single'"[card]="cardSc"></app-card-option>
+            <app-card-option *Ske="skeleton(); width:'100%' heightRect1:'119px' type:'single'"[card]="cardPy"></app-card-option>
+            <app-card-option *Ske="skeleton(); width:'100%' heightRect1:'119px' type:'single'"[card]="cardCont"></app-card-option>
         </div>
     </div>
 

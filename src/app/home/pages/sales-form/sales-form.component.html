@@ -4,7 +4,7 @@
         <span (click)="doSomething()" class="back">
             <i class="fa-solid fa-arrow-left"></i>
         </span>
-        <form (ngSubmit)="getSubmit()" [formGroup]="salesForm" class="page slide-page flash">
+        <div  class="page slide-page flash">
 
             <div class="form_header">
                 <div class="form_title">
@@ -12,39 +12,79 @@
                 </div>
             </div>
 
-            <div class="content-input">
-                <label class="label" for="">Producto</label>
-                <div class="form__field"  [formGroup]="salesForm">
-                    <select name="select" formControlName="products" (change)="changeProduct()">
-                        <option value="" hidden>Ingresa el producto</option>
-                        <option name="select" *ngFor="let item of selects" [value]="item.id">{{item.denominacion}}</option>
-                    </select>
-                    <div class="select-arrow">
-                        <div class="arrow-down"></div>
-                    </div>
+    
+
+           <div class="input-content">
+            <label class="label" for="">Producto</label>
+            <input type="text" class="input" [(ngModel)]="codigoBuscado" placeholder="Ingresa el codigo de barras y presiona enter o escanea el codigo" (keyup.enter)="onEnterPressed()">
+            <div *ngIf="valid" class="error-code"><p>Has ingresado un codigo que no existe </p></div>
+            <div *ngIf="validProduct" class="error-code"><p>Ya has ingresado este producto, solo cambia la cantidad</p></div>
+           </div>
+
+            <p class="label-title">Total: ${{total() | customNumber}}</p>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Codigo</th>
+                            <th>Existencia</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Total</th>
+                            <th>Eliminar</th>
+   
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let data of productosFiltrados | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
+                        <tr>
+                            <td>{{data.denominacion}}</td>
+                            <td>{{data.codigo}}</td>
+                            <td>{{data.existente_en_almacen}}</td>
+                            <td><input class="input-quantiti" style="width: 40px;" type="number" [(ngModel)]="quantities[i]" (input)="onCantidadChange(data,i)"></td>
+                            <td>{{data.precio_por_unidad | customNumber}}</td>
+                            <td>{{data.total | customNumber}}</td>
+                            <td style="color: red; font-size: 18px; cursor: pointer;"><span (click)="onDeleteProducto(data)"><i class="fa-solid fa-trash-can"></i></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <pagination-controls 
+            class="my-pagination"
+            [directionLinks]="false"
+            (pageChange)="p = $event" 
+            previousLabel="Anterior"
+            nextLabel="Siguiente"  
+            [maxSize]="5" 
+            [responsive]="true"
+            ></pagination-controls>
+     
+
+            <form *ngIf="isItemsArrayValid()" (ngSubmit)="getSubmit()" [formGroup]="saleForm" class="page slide-page flash">       
+    
+                <div class="content-inputs">
+                    <app-input [form]="saleForm" [arrayInput]="arrayInput1">
+                    </app-input>
+                    <app-input [form]="saleForm" [arrayInput]="arrayInput2">
+                    </app-input>
                 </div>
-            </div>
 
-            <app-input [form]="salesForm" [arrayInput]="arrayInput1">
-            </app-input>
+    
+                <div class="form-button">
+                    <app-button [label]="'Generar venta'" [myForm]="saleForm"></app-button>
+                </div>
+    
+            </form>
+            
 
-            <app-input [form]="salesForm" [arrayInput]="arrayInput3">
-            </app-input>
+       
 
-            <app-input [form]="salesForm" [arrayInput]="arrayInput4">
-            </app-input>
-
-            <app-input [form]="salesForm" [arrayInput]="arrayInput5">
-            </app-input>
-
-            <app-input [form]="salesForm" [arrayInput]="arrayInput6">
-            </app-input>
-
-            <div class="form-button">
-                <app-button [label]="'Guardar'" [myForm]="salesForm"></app-button>
-                <!-- <app-button-click [label]="'Ver todas'" [buttonMethod]="doSomething"></app-button-click> -->
-            </div>
-
-        </form>
+        </div>
     </div>
 </div>
+
+
+
+  

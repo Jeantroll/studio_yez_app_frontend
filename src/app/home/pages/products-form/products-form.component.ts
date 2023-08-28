@@ -33,7 +33,7 @@ export class ProductsFormComponent {
 
   // productForm!: FormGroup;
   private baseUrl: string = environments.baseUrl;
-  sub$!: Subscription;
+  private subscriptions$ = new Subscription();
 
   token!: string;
   saleId: string = '';
@@ -126,9 +126,13 @@ export class ProductsFormComponent {
   };
 
   ngOnInit(): void {
-    this.sub$ = this.auth.getUsuario.subscribe((usuario) => {
-      this.token = 'Bearer ' + usuario.token;
-    });
+
+    this.subscriptions$.add(
+      this.auth.getUsuario.subscribe((usuario) => {
+        this.token = 'Bearer ' + usuario.token;
+      })
+    ) 
+    
     this.saleId = this.activateR.snapshot.paramMap.get('id') as string;
     if (this.saleId) {
       this.getIDUrl();
@@ -141,20 +145,24 @@ export class ProductsFormComponent {
     const UrlApi = `${this.baseUrl}/api/v1/productos/${this.saleId}`;
     const headers = {'Authorization': this.token};
 
-    this.apiGet.getDebtInfo(UrlApi, headers)
-    .subscribe((resp)=>{
- 
-      this.loader.setLoader(false);
-      this.product = resp;  
-      this.productForm.patchValue({
-        code: this.product.data.codigo,
-        denomination: this.product.data.denominacion,
-        image: this.product.data.imagen,
-        existence: this.product.data.existente_en_almacen,
-        wholesale: this.product.data.precio_por_mayor,
-        unit: this.product.data.precio_por_unidad,
-      });  
-    }) 
+    this.subscriptions$.add(
+      this.apiGet.getDebtInfo(UrlApi, headers)
+      .subscribe((resp)=>{
+   
+        this.loader.setLoader(false);
+        this.product = resp;  
+        this.productForm.patchValue({
+          code: this.product.data.codigo,
+          denomination: this.product.data.denominacion,
+          image: this.product.data.imagen,
+          existence: this.product.data.existente_en_almacen,
+          wholesale: this.product.data.precio_por_mayor,
+          unit: this.product.data.precio_por_unidad,
+        });  
+      })
+    )
+
+    
   }
 
   getSubmit() {
@@ -181,16 +189,24 @@ export class ProductsFormComponent {
     const apiObservable = this.saleId
       ? this.apiPut.updateDebtInfo(UrlApi, paramsBody, headers)
       : this.apiPost.getDebtInfo(UrlApi, paramsBody, headers);
+
+      this.subscriptions$.add(
+        apiObservable.subscribe(
+          (resp) => {    
+            this.buttonService.setCHange(false);
+            this.router.navigate(['/home/productos']);
+          },
+          (error) => {}
+        )
+      )
   
-    apiObservable.subscribe(
-      (resp) => {    
-        this.buttonService.setCHange(false);
-        this.router.navigate(['/home/productos']);
-      },
-      (error) => {}
-    );
+    
   }
   
+  ngOnDestroy(): void {
+    if (this.subscriptions$) this.subscriptions$.unsubscribe();
+    this.loader.setLoader(false);
+  }
 
   doSomething(){
     this.router.navigate(['/home/productos']);

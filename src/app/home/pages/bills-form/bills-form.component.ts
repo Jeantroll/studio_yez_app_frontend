@@ -35,7 +35,8 @@ export class BillsFormComponent {
 
   // salesForm!: FormGroup;
   private baseUrl: string = environments.baseUrl;
-  sub$!: Subscription;
+  private subscriptions$ = new Subscription();
+
 
   token!: string;
   billId: string = '';
@@ -47,16 +48,6 @@ export class BillsFormComponent {
       amount: ['', [Validators.required]],
   });
 
-  arrayInput1: inputModel = {
-    labelExists: true,
-    iconExists: false,
-    decimal: false,
-    name: 'Descripción',
-    placeholder: 'Descripción',
-    icon: 'fa-solid fa-hashtag',
-    controlName: 'description',
-    type: 'text',
-  };
 
   arrayInput3: inputModel = {
     labelExists: true,
@@ -70,9 +61,13 @@ export class BillsFormComponent {
   };
 
   ngOnInit(): void {
-    this.sub$ = this.auth.getUsuario.subscribe((usuario) => {
-      this.token = 'Bearer ' + usuario.token;
-    });
+
+    this.subscriptions$.add(
+      this.auth.getUsuario.subscribe((usuario) => {
+        this.token = 'Bearer ' + usuario.token;
+      })
+    );
+   
     this.billId = this.activateR.snapshot.paramMap.get('id') as string;
     
     if (this.billId) {
@@ -86,15 +81,19 @@ export class BillsFormComponent {
     const UrlApi = `${this.baseUrl}/api/v1/gastos/${this.billId}`;
     const headers = {'Authorization': this.token};
 
-    this.apiGet.getDebtInfo(UrlApi, headers)
-    .subscribe((resp)=>{
-      this.loader.setLoader(false);
-      this.bill = resp;  
-      this.billForm.patchValue({
-        description: resp.data.descripcion,
-        amount:  this.utilities.formatoMilesMillones(resp.data.monto.toString()),
-      });  
-    }) 
+    this.subscriptions$.add(
+      this.apiGet.getDebtInfo(UrlApi, headers)
+      .subscribe((resp)=>{
+        this.loader.setLoader(false);
+        this.bill = resp;  
+        this.billForm.patchValue({
+          description: resp.data.descripcion,
+          amount:  this.utilities.formatoMilesMillones(resp.data.monto.toString()),
+        })
+      })
+    );
+
+   
   }
 
   getSubmit() {
@@ -120,15 +119,24 @@ export class BillsFormComponent {
       ? this.apiPut.updateDebtInfo(UrlApi, paramsBody, headers)
       : this.apiPost.getDebtInfo(UrlApi, paramsBody, headers);
   
-    apiObservable.subscribe(
-      (resp) => {
-        this.buttonService.setCHange(false);
-        this.router.navigate(['/home/gastos']);
-      },
-      (error) => {}
+      
+    this.subscriptions$.add(
+      apiObservable.subscribe(
+        (resp) => {
+          this.buttonService.setCHange(false);
+          this.router.navigate(['/home/gastos']);
+        },
+        (error) => {}
+      )
     );
+  
   }
   
+
+  ngOnDestroy(): void {
+    if (this.subscriptions$) this.subscriptions$.unsubscribe();
+    this.loader.setLoader(false);
+  }
 
   doSomething(){
     this.router.navigate(['/home/gastos']);

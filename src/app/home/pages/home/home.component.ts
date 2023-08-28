@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, inject, signal } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Subscription, retry } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -71,34 +71,42 @@ export class HomeComponent {
   amountID!: number;
   userID!: string;
 
-  sub$!: Subscription;
+  skeleton = signal(true) ;
+
+
+  private subscriptions$ = new Subscription();
 
   ngOnInit(): void {
 
-    this.loader.setLoader(true);
-    this.sub$ = this.auth.getUsuario.subscribe((usuario) => {
-      this.token = 'Bearer ' + usuario.token;
-      this.userID = usuario.id
-    });
+    this.subscriptions$.add(
+
+      this.auth.getUsuario
+      .subscribe((usuario) => {
+        this.token = 'Bearer ' + usuario.token;
+        this.userID = usuario.id
+      })
+
+    )  
 
     const UrlApi = `${this.baseUrl}/api/v1/balance`;
     const headers = {'Authorization': this.token};  
   
-    this.apiGet.getDebtInfo(UrlApi,headers)
-    .subscribe((resp) => {
-    this.loader.setLoader(false);  
-      this.sales = resp.total_ventas;
-      this.bills = resp.total_gastos;
-      this.total = resp.balance_diario;
-      this.amount = resp.monto_diario;
-      this.salesD = resp.cantidad_ventas;
-      this.amountID = resp.monto_id;     
-    });
+    this.subscriptions$.add(
 
-  }
+      this.apiGet.getDebtInfo(UrlApi,headers)
+      .subscribe((resp) => {
+        this.skeleton.set(false)       
+        this.sales = resp.total_ventas;
+        this.bills = resp.total_gastos;
+        this.total = resp.balance_diario;
+        this.amount = resp.monto_diario;
+        this.salesD = resp.cantidad_ventas;
+        this.amountID = resp.monto_id;     
+      })
 
-  ngOnDestroy(): void {
-    if (this.sub$) this.sub$.unsubscribe();
+    )
+ 
+
   }
 
   amountOpenModal() {
@@ -107,8 +115,7 @@ export class HomeComponent {
       onMethod: () => {
 
         newModalChangeData.viewModal = false;
-        this.loader.setLoader(true);
-
+        this.skeleton.set(true)       
         const headers = {'Authorization': this.token};  
 
         const paramsBody = this.amountID 
@@ -123,18 +130,23 @@ export class HomeComponent {
         ? this.apiPut.updateDebtInfo(UrlApi, paramsBody, headers)
         : this.apiPost.getDebtInfo(UrlApi, paramsBody, headers);
    
-        apiObservable.subscribe(
-          (resp) => {    
-            this.loader.setLoader(false);
+        this.subscriptions$.add(
 
-            this.amount = resp.monto_diario;
-            this.sales = resp.total_ventas;
-            this.bills = resp.total_gastos;
-            this.salesD = resp.cantidad_ventas;
-            this.total = resp.balance_diario;
-          },
-          (error) => {}
-        );
+          apiObservable.subscribe(
+            (resp) => {    
+              this.skeleton.set(false)            
+              this.amount = resp.monto_diario;
+              this.sales = resp.total_ventas;
+              this.bills = resp.total_gastos;
+              this.salesD = resp.cantidad_ventas;
+              this.total = resp.balance_diario;
+            },
+            (error) => {}
+          )
+    
+        )
+
+      
       
       },
     };
@@ -142,6 +154,9 @@ export class HomeComponent {
     this.modalChangeService.setArray(newModalChangeData);
   }
 
+  ngOnDestroy(): void {
+    if (this.subscriptions$) this.subscriptions$.unsubscribe();
+  }
  
 }
 

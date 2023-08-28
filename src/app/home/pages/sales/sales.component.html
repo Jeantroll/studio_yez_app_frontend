@@ -21,32 +21,52 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Cantidad</th>
-                            <th>Precio mayorista</th>
-                            <th>Precio unidad</th>
-                            <th>Precio venta</th>
+                            <th>Fecha</th>
+                            <th>Total</th>
+                            <th>Productos</th>
+                            <th>Cliente</th>
                             <th>Vendedor</th>
-                            <th>Editar</th>
+                            <th>Factura</th>
                         </tr>
                     </thead>
-                    <tbody *ngFor="let data of data.data | filtro:page">
+                    <tbody *ngFor="let data of data.data | paginate: { itemsPerPage: 5, currentPage: p }">
                         <tr>
-                            <td><span><i class="fa-solid fa-hashtag"></i></span> <span>{{data.cantidad}}</span></td>
-                            <td>{{data.precio_mayorista | customNumber}}</td>
-                            <td>{{data.precio_unidad | customNumber}}</td>
+                            <td><span class="date"><i class="fa-solid fa-calendar"></i></span> <span> {{data.created_at | date}}</span></td>
                             <td>{{data.precio_venta | customNumber}}</td>
-                            <td>{{data.vendedor}}</td>
-                            <td routerLink="/home/ventas-form/{{data.id}}" style="color: var(--secondary-color-1); font-size: 18px; cursor: pointer;"><i class="fa-regular fa-pen-to-square"></i></td>
+                            <!-- <td style="width: 70%;">
+                                <div class="grid">
+                                    <div class="card-grid" *ngFor="let item of data.productos">
+                                       <div>
+                                        <div class="denomination">{{item.denominacion  | textFilter}} </div>
+                                        <div>{{item.total_producto | customNumber}}</div>
+                                        <div># {{item.cantidad}}</div>
+                                       </div>
+                                    </div>
+                                </div>
+                            </td> -->
+                            <td>
+                                <select class="select-productos">
+                                    <option *ngFor="let item of data.productos" value=""> {{item.denominacion  | textFilter}} {{'Precio: '+ (item.total_producto | customNumber)}} {{'Cantidad:'+item.cantidad}}</option>
+                                  </select>
+                                  
+                            </td>
+                            <td>{{data.nombre_comprador}}</td>
+                            <td>{{data.nombre_comprador}}</td>
+                            <td><span class="icon"><i class="fa-solid fa-file-invoice"></i></span></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="paginate-yez">
-                <span (click)="prevPage()"><i class="fa-solid fa-chevron-left"></i></span>
-                <span></span>
-                <span (click)="nextPage()"><i class="fa-solid fa-chevron-right"></i></span>
-            </div>
+            <pagination-controls 
+            class="my-pagination"
+            [directionLinks]="false"
+            (pageChange)="p = $event" 
+            previousLabel="Anterior"
+            nextLabel="Siguiente"  
+            [maxSize]="5" 
+            [responsive]="true"
+            ></pagination-controls>
 
         </div>
 

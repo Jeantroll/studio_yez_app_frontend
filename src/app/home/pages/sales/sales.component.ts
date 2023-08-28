@@ -41,30 +41,42 @@ export class SalesComponent {
 
   public data: any = {};
   public page: number = 0;
+  p: number = 1;
 
-  sub$! : Subscription;
+
+  private subscriptions$ = new Subscription();
+
 
   ngOnInit(): void {
   
     this.loader.setLoader(true);
 
     let token;
-    this.sub$ = this.auth.getUsuario.subscribe(usuario => { 
-      token = 'Bearer '+ usuario.token; 
-    });
-  
+
+    this.subscriptions$.add(
+      this.auth.getUsuario.subscribe(usuario => { 
+        token = 'Bearer '+ usuario.token; 
+      })
+    );
+ 
     const UrlApi = `${this.baseUrl}/api/v1/ventas`;
     const headers = {'Authorization': token};
 
-    this.apiGet.getDebtInfo(UrlApi, headers)
-    .subscribe((resp)=>{
-      this.loader.setLoader(false);
-      this.data = resp
-    })
+    this.subscriptions$.add(
+      this.apiGet.getDebtInfo(UrlApi, headers)
+      .subscribe((resp)=>{
+        this.loader.setLoader(false);
+        this.data = resp
+        console.log(this.data);
+        
+      })
+    );
+   
   }
 
   ngOnDestroy(): void{
-  
+    if (this.subscriptions$) this.subscriptions$.unsubscribe();
+    this.loader.setLoader(false);
   };
 
   nextPage(){

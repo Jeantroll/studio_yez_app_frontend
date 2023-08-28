@@ -5,7 +5,6 @@ import { HomeRoutingModule } from './home-routing.module';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { StocktakingComponent } from './pages/stocktaking/stocktaking.component';
 import { InvoicesComponent } from './pages/invoices/invoices.component';
 import { SalesComponent } from './pages/sales/sales.component';
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
@@ -15,12 +14,12 @@ import { ProductsComponent } from './pages/products/products.component';
 import { BillsComponent } from './pages/bills/bills.component';
 import { BillsFormComponent } from './pages/bills-form/bills-form.component';
 import { ProductsFormComponent } from './pages/products-form/products-form.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
     HomeComponent,
     LayoutComponent,
-    StocktakingComponent,
     InvoicesComponent,
     SalesComponent,
     ConfigurationComponent,
@@ -36,8 +35,8 @@ import { ProductsFormComponent } from './pages/products-form/products-form.compo
     HomeRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    FormsModule
-
+    FormsModule,
+    NgxPaginationModule,
   ]
 })
 export class HomeModule { }

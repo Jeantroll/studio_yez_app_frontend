@@ -34,6 +34,11 @@ export class BillsComponent {
   private baseUrl: string = environments.baseUrl;
   public page: number = 0;
 
+  private subscriptions$ = new Subscription();
+
+  p: number = 1;
+
+
   
   constructor(
     private router: Router
@@ -49,23 +54,31 @@ export class BillsComponent {
     this.loader.setLoader(true);
 
     let token;
-    this.sub$ = this.auth.getUsuario.subscribe(usuario => { 
-      token = 'Bearer '+ usuario.token; 
-    });
+
+    this.subscriptions$.add(
+      this.sub$ = this.auth.getUsuario
+      .subscribe(usuario => { 
+        token = 'Bearer '+ usuario.token; 
+      })
+    );
   
     const UrlApi = `${this.baseUrl}/api/v1/gastos`;
     const headers = {'Authorization': token};
 
-    this.apiGet.getDebtInfo(UrlApi, headers)
-    .subscribe((resp)=>{
-      this.loader.setLoader(false);
-      this.data = resp
-    })
+    this.subscriptions$.add(
+      this.apiGet.getDebtInfo(UrlApi, headers)
+      .subscribe((resp)=>{
+        this.loader.setLoader(false);
+        this.data = resp
+      })
+    );
+    
   }
 
-  ngOnDestroy(): void{
-  
-  };
+  ngOnDestroy(): void {
+    if (this.subscriptions$) this.subscriptions$.unsubscribe();
+    this.loader.setLoader(false);
+  }
 
   nextPage(){
     this.page += 5;

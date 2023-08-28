@@ -36,6 +36,7 @@ body {
 
     /* text colors */
     --color-text: #707070;
+    --color-text-input: black;
     --color-text-check: #F4F4F4;
     --color-text-hover: #F4F4F4;
     --border-color: #e9ecef;
@@ -71,6 +72,7 @@ body.dark-theme {
 
     /* text colors */
     --color-text: #F4F4F4;
+    --color-text-input: white;
     --color-text-check: #707070;
     --color-text-hover: #F4F4F4;
     --border-color: #323030;
@@ -88,3 +90,13 @@ body.dark-theme {
     --fondo-check: #3a3b3c;
 
 }
+
+.my-pagination ::ng-deep .ngx-pagination a {
+    color: var(--color-text);
+    font-size: 12px;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+    background: var(--primary-color);
+    border-radius: 5px;
+  }

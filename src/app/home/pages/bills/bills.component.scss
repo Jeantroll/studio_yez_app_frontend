@@ -1,6 +1,6 @@
 @import '../../../../styles.scss';
 
-app-button-click{
+app-button-click {
     align-self: flex-start;
 }
 
@@ -85,7 +85,8 @@ app-button-click{
         // box-shadow: 0 8px 4px rgba(0, 0, 0, 0.0392156863), 0 0 4px rgba(0, 0, 0, 0.2509803922);
         // border-radius: 5px;
         padding: 25px 25px 35px 25px;
-        .table-responsive{
+
+        .table-responsive {
             overflow-x: auto;
         }
     }
@@ -147,8 +148,8 @@ table {
     }
 }
 
-.paginate-yez{
-    display: flex; 
+.paginate-yez {
+    display: flex;
     justify-content: flex-end;
     gap: 10px;
     cursor: pointer;
@@ -156,9 +157,11 @@ table {
 }
 
 @media (max-width: 768px) {
-   .container{
-    .product-movements {
-        padding: 25px 0px 35px 0px;
+    .container {
+        .product-movements {
+            padding: 25px 0px 35px 0px;
+        }
     }
-   }
 }
+
+

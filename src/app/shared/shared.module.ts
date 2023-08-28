@@ -22,6 +22,11 @@ import { CustomNumberPipe } from './pipes/custom-number.pipe';
 import { FiltroPipe } from './pipes/filtro.pipe';
 import { FormatoNumericoDirective } from './directives/formato-numerico.directive';
 import { PointsLoaderComponent } from './components/points-loader/points-loader.component';
+import { TextFilterPipe } from './pipes/text-filter.pipe';
+import { SkeletonComponent } from './components/skeleton/skeleton.component';
+import { SkeletonRectComponent } from './components/skeleton-rect/skeleton-rect.component';
+import { SkeletonDirective } from './directives/skeleton.directive';
+import { SkeletonRectangleDirective } from './directives/skeleton-rectangle.directive';
 
 
 
@@ -48,7 +53,13 @@ import { PointsLoaderComponent } from './components/points-loader/points-loader.
     CustomNumberPipe,
     FiltroPipe,
     FormatoNumericoDirective,
-    PointsLoaderComponent
+    PointsLoaderComponent,
+    TextFilterPipe, 
+    SkeletonComponent,
+    SkeletonRectComponent,
+    SkeletonDirective,
+    SkeletonRectangleDirective
+
   ],
   imports: [
     CommonModule,
@@ -74,7 +85,12 @@ import { PointsLoaderComponent } from './components/points-loader/points-loader.
     CustomNumberPipe,
     FiltroPipe,
     FormatoNumericoDirective,
-    PointsLoaderComponent
+    PointsLoaderComponent,
+    TextFilterPipe, 
+    SkeletonComponent,
+    SkeletonRectComponent,
+    SkeletonDirective,
+    SkeletonRectangleDirective
 
   ]
 })

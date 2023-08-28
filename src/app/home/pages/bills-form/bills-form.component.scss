@@ -7,7 +7,7 @@
     // align-items: center;
     // gap: 45px;
 
-    .back{
+    .back {
         color: var(--color-text);
         font-size: $medium-font-size-title;
         cursor: pointer;
@@ -27,12 +27,12 @@
         align-items: flex-start;
         gap: 20px;
         // justify-content: center;
-   
+
         .page {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            width: 80%;
+            width: 100%;
 
             .form_header {
 
@@ -81,7 +81,7 @@
 
             }
 
-            .form-button{
+            .form-button {
                 display: flex;
                 align-self: flex-start;
                 gap: 10px;
@@ -91,6 +91,60 @@
     }
 
 
+}
+
+.content-inputs {
+    display: flex;
+    gap: 40px;
+    width: 100%;
+}
+
+.content-msg {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+
+    .label {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--color-text);
+    }
+
+    .msg {
+        position: relative;
+        border-radius: 5px;
+        height: 80px;
+        background-color: var(--sidebar-color-fondo);
+        box-shadow: 0 0 5px var(--box-label-input);
+
+        textarea {
+            height: 60%;
+            width: 90%;
+            position: absolute;
+            background-color: var(--sidebar-color-fondo);
+            resize: none;
+            left: 50%;
+            transform: translate(-50%);
+            outline: none;
+            border: none;
+            font-size: 0.75rem;
+            opacity: 0.6;
+            outline: none;
+            color: var(--color-text-input);
+            font-weight: bold;
+            top: 10px;
+            font-family: "Poppins", sans-serif;
+
+            &::placeholder {
+                color: var(--color-text-input);
+                font-family: "Poppins", sans-serif;
+                font-weight: 200;
+                opacity: .7;
+            }
+        }
+
+    }
 }
 
 @media (max-width: 1024px) {

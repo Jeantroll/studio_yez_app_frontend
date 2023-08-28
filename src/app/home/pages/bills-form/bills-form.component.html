@@ -12,14 +12,20 @@
                 </div>
             </div>
 
-            <app-input [form]="billForm" [arrayInput]="arrayInput1">
-            </app-input>
-
-            <!-- <app-input [form]="salesForm" [arrayInput]="arrayInput2">
-        </app-input> -->
-
+           <div class="content-inputs">
+        
             <app-input [form]="billForm" [arrayInput]="arrayInput3">
             </app-input>
+                 
+            <div class="content-msg">
+                <label class="label" for="">Descripción</label>
+                <div class="msg">
+                    <textarea spellcheck="false" formControlName="description" required cols="20" rows="3"
+                        placeholder="Mensaje"></textarea>
+                </div>
+            </div>
+
+           </div>
 
             <div class="form-button">
                 <app-button [label]="'Guardar'" [myForm]="billForm"></app-button>

@@ -30,7 +30,7 @@
                             <th>Editar</th>
                         </tr>
                     </thead>
-                    <tbody *ngFor="let data of data.data | filtro:page">
+                    <tbody *ngFor="let data of data.data | paginate: { itemsPerPage: 5, currentPage: p }">
                         <tr>
                             <td><span><i class="fa-solid fa-hashtag"></i></span> <span>{{data.codigo}}</span></td>
                             <td>{{data.denominacion}}</td>
@@ -44,10 +44,16 @@
                 </table>
             </div>
 
-            <div class="paginate-yez">
-                <span (click)="prevPage()"><i class="fa-solid fa-chevron-left"></i></span>
-                <span (click)="nextPage()"><i class="fa-solid fa-chevron-right"></i></span>
-            </div>
+            <pagination-controls 
+            class="my-pagination"
+            [directionLinks]="false"
+            (pageChange)="p = $event" 
+            previousLabel="Anterior"
+            nextLabel="Siguiente"  
+            [maxSize]="5" 
+            [responsive]="true"
+            ></pagination-controls>
+            
 
         </div>
 

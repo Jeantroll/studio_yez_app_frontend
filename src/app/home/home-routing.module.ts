@@ -4,7 +4,6 @@ import { LayoutComponent } from './pages/layout/layout.component';
 import { HomeComponent } from './pages/home/home.component';
 import { InvoicesComponent } from './pages/invoices/invoices.component';
 import { SalesComponent } from './pages/sales/sales.component';
-import { StocktakingComponent } from './pages/stocktaking/stocktaking.component';
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
 import { SalesFormComponent } from './pages/sales-form/sales-form.component';
 import { ProductsComponent } from './pages/products/products.component';
