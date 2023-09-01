@@ -1,4 +1,4 @@
 export const environments = {
     production: true,
-    baseUrl: 'http://api.studioyez.store',
+    baseUrl: 'https://api.studioyez.store',
 }
