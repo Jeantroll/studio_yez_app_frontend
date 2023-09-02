@@ -79,6 +79,9 @@ export class SalesComponent {
     this.loader.setLoader(false);
   };
 
+  redirigirAPagina(url: string) {
+    window.location.href = url;
+  }
   nextPage(){
     this.page += 5;
   }
