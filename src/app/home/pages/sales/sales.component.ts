@@ -43,6 +43,7 @@ export class SalesComponent {
   public page: number = 0;
   p: number = 1;
   token!: string;
+  search: string = '';
 
   private subscriptions$ = new Subscription();
 

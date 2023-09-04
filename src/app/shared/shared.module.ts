@@ -27,6 +27,7 @@ import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { SkeletonRectComponent } from './components/skeleton-rect/skeleton-rect.component';
 import { SkeletonDirective } from './directives/skeleton.directive';
 import { SkeletonRectangleDirective } from './directives/skeleton-rectangle.directive';
+import { SearchSalePipe } from './pipes/search-sale.pipe';
 
 
 
@@ -58,7 +59,8 @@ import { SkeletonRectangleDirective } from './directives/skeleton-rectangle.dire
     SkeletonComponent,
     SkeletonRectComponent,
     SkeletonDirective,
-    SkeletonRectangleDirective
+    SkeletonRectangleDirective,
+    SearchSalePipe
 
   ],
   imports: [
@@ -90,7 +92,8 @@ import { SkeletonRectangleDirective } from './directives/skeleton-rectangle.dire
     SkeletonComponent,
     SkeletonRectComponent,
     SkeletonDirective,
-    SkeletonRectangleDirective
+    SkeletonRectangleDirective,
+    SearchSalePipe
 
   ]
 })
