@@ -51,8 +51,11 @@
                                   
                             </td>
                             <td>{{data.nombre_comprador}}</td>
-                            <td>{{data.nombre_comprador}}</td>
-                            <td><span class="icon"><a [href]="data.url_factura"><i class="fa-solid fa-file-invoice"></i></a></span></td>
+                            <td>{{data.vendedor.name}}</td>
+                            <td *ngIf="data.estado_pago === 1; else template1"><span class="icon"><a [href]="data.url_factura"><i class="fa-solid fa-file-invoice"></i></a></span></td>
+                            <ng-template #template1>
+                                <span class="button"><button [class.loading]="data.loading"  class="action-btn" (click)="activateSale(data.id,data)">Activar</button></span>
+                            </ng-template>
                         </tr>
                     </tbody>
                 </table>

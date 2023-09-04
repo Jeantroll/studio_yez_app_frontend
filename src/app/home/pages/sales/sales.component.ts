@@ -42,7 +42,7 @@ export class SalesComponent {
   public data: any = {};
   public page: number = 0;
   p: number = 1;
-
+  token!: string;
 
   private subscriptions$ = new Subscription();
 
@@ -51,16 +51,14 @@ export class SalesComponent {
   
     this.loader.setLoader(true);
 
-    let token;
-
     this.subscriptions$.add(
       this.auth.getUsuario.subscribe(usuario => { 
-        token = 'Bearer '+ usuario.token; 
+        this.token = 'Bearer '+ usuario.token; 
       })
     );
  
     const UrlApi = `${this.baseUrl}/api/v1/ventas`;
-    const headers = {'Authorization': token};
+    const headers = {'Authorization': this.token};
 
     this.subscriptions$.add(
       this.apiGet.getDebtInfo(UrlApi, headers)
@@ -78,6 +76,45 @@ export class SalesComponent {
     if (this.subscriptions$) this.subscriptions$.unsubscribe();
     this.loader.setLoader(false);
   };
+
+  activateSale(id:any, data: any){
+    data.loading =  true;
+
+    const UrlApi = `${this.baseUrl}/api/v1/factura`;
+
+    // const paramsBody = {
+    //   id: id,
+    // };
+
+    // const headers = {'Authorization': this.token};
+
+    // this.apiPost.getDebtInfo(UrlApi, paramsBody, headers)
+    // .subscribe((resp)=>{
+    //   console.log(resp);    
+    // })
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    myHeaders.append("Authorization", this.token);
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("id", id);
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: undefined
+    };
+
+    fetch(UrlApi, requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        data.loading =  false;
+      })
+      .catch(error => console.log('error', error));
+
+  }
 
   redirigirAPagina(url: string) {
     window.location.href = url;
