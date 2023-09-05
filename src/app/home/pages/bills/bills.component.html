@@ -13,7 +13,11 @@
     <div>
         <div class="product-movements">
             <app-button-click label="Generar Gasto" [buttonMethod]="doSomething"></app-button-click>
-            <!-- <p class="home_title">Ventas</p> -->
+
+            <div class="input-content">
+                <label class="label" for="busqueda">Buscar:</label>
+                <input class="input" type="date" id="busqueda" [(ngModel)]="search" placeholder="Ingresa el codigo de factura">
+            </div>
 
             <div class="table-responsive">
                 <table>
@@ -26,7 +30,7 @@
     
                         </tr>
                     </thead>
-                    <tbody *ngFor="let data of data.data | paginate: { itemsPerPage: 5, currentPage: p }">
+                    <tbody *ngFor="let data of (data.data | searchSale:'fecha': search  | paginate: { itemsPerPage: 5, currentPage: p })">
                         <tr>
                             <td><span><i class="fa-solid fa-hashtag"></i></span> <span>{{data.descripcion}}</span></td>
                             <td>{{data.monto | customNumber}}</td>

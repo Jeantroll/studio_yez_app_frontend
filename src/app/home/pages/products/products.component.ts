@@ -42,7 +42,7 @@ export class ProductsComponent {
 
 
   public data: any = {};
-
+  search: string = '';
   
   private subscriptions$ = new Subscription();
 
@@ -65,6 +65,8 @@ export class ProductsComponent {
     this.subscriptions$.add(
       this.apiGet.getDebtInfo(UrlApi, headers)
       .subscribe((resp)=>{
+        console.log(resp);
+        
         this.loader.setLoader(false);
         this.data = resp
       })

@@ -154,6 +154,49 @@ table {
     cursor: pointer;
     color: var(--color-text);
 }
+.input-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+
+    .input {
+        width: 100%;
+        padding: 10px;
+        background-color: var(--sidebar-color-fondo);
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+        border: none;
+        font-size: $small-font-size;
+        opacity: .9;
+        outline: none;
+        color: var(--color-text-input);
+        font-weight: 600;
+
+        &::-webkit-calendar-picker-indicator {
+            // filter: invert(1);
+        }
+
+        // &:focus {
+        //     color: var(--color-text);
+        // }
+
+        &::placeholder {
+            color: var(--color-text);
+            font-weight: 100;
+            opacity: .7;
+        }
+    }
+
+    .label {
+        display: flex;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--color-text);
+    }
+}
 
 @media (max-width: 768px) {
    .container{

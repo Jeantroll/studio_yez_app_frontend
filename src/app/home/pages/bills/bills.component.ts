@@ -46,6 +46,8 @@ export class BillsComponent {
 
 
   public data: any = {};
+  search: string = '';
+
 
   sub$! : Subscription;
 
@@ -68,6 +70,7 @@ export class BillsComponent {
     this.subscriptions$.add(
       this.apiGet.getDebtInfo(UrlApi, headers)
       .subscribe((resp)=>{
+        console.log(resp);     
         this.loader.setLoader(false);
         this.data = resp
       })

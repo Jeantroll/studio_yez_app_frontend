@@ -13,9 +13,11 @@ export class SearchSalePipe implements PipeTransform {
     return items.filter(item => {   
       if (filtro === 'codigo_factura') { 
         return item.codigo_factura.includes(valor);
-      } else if (filtro === 'name') {
-        return item.name.includes(valor);
-      } else {
+      } else if (filtro === 'codigo') {
+        return item.codigo.includes(valor);
+      }  else if (filtro === 'fecha') {
+        return item.fecha.includes(valor);
+      }else {
         return false;
       }
     });

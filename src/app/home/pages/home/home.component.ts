@@ -50,16 +50,16 @@ export class HomeComponent {
   cardPy: any = {
     icon: 'bx bx-credit-card icon',
     coloricon: '#ffa534',
-    title: 'Inventario',
-    route: 'inventario',
-    subtitle: 'Gestiona tus Pagos con Facilidad.',
+    title: 'Gastos',
+    route: 'gastos',
+    subtitle: 'Detalla tu gastos diarios.',
   };
   cardCont: any = {
     icon: 'bx bxs-contact icon',
     coloricon: 'rgb(113 144 209)',
-    title: 'Configuración',
-    route: 'configuracion',
-    subtitle: 'Estamos Aquí para Ayudarte.',
+    title: 'Productos',
+    route: 'productos',
+    subtitle: 'Busca en nuestros productos.',
   };
 
   sales!: number;
