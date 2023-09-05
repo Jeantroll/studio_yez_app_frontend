@@ -112,7 +112,7 @@ export class SalesComponent {
       .then(response => response.text())
       .then(result => {
         data.loading =  false;
-        this.router.navigate(['/home/ventas']);
+        window.location.reload();
       })
       .catch(error => console.log('error', error));
 
