@@ -10,6 +10,8 @@ import { ProductsComponent } from './pages/products/products.component';
 import { BillsComponent } from './pages/bills/bills.component';
 import { BillsFormComponent } from './pages/bills-form/bills-form.component';
 import { ProductsFormComponent } from './pages/products-form/products-form.component';
+import { DevolucionesComponent } from './pages/devoluciones/devoluciones.component';
+import { DevolucionesFormComponent } from './pages/devoluciones-form/devoluciones-form.component';
 
 const routes: Routes = [
   {
@@ -55,6 +57,14 @@ const routes: Routes = [
       {
         path: 'gastos-form/:id',
         component: BillsFormComponent,
+      },
+      {
+        path: 'devolucion',
+        component: DevolucionesComponent,
+      },
+      {
+        path: 'devoluciones-form',
+        component: DevolucionesFormComponent,
       },
       {
         path: '**',

@@ -15,6 +15,8 @@ import { BillsComponent } from './pages/bills/bills.component';
 import { BillsFormComponent } from './pages/bills-form/bills-form.component';
 import { ProductsFormComponent } from './pages/products-form/products-form.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { DevolucionesComponent } from './pages/devoluciones/devoluciones.component';
+import { DevolucionesFormComponent } from './pages/devoluciones-form/devoluciones-form.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BillsComponent,
     BillsFormComponent,
     ProductsFormComponent,
+    DevolucionesComponent,
+    DevolucionesFormComponent,
   ],
   imports: [
     CommonModule,

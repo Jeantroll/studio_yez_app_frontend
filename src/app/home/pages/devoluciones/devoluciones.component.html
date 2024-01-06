@@ -5,19 +5,19 @@
         
 
         <div class="products-header_pruduct">
-            <span><i class="fa-solid fa-clipboard"></i></span>
-            <p>Registro de productos</p>
-            <p>Ingresa y edita las productos</p>
+            <span><i class="fa-solid fa-right-left icon"></i></span>
+            <p>Devoluciones</p>
+            <p>Gestion de devoluciones</p>
         </div>
 
     </div>
 
     <div>
         <div class="product-movements">
-            <app-button-click label="Crear Producto" [buttonMethod]="doSomething"></app-button-click>
+            <app-button-click label="Generar devolucion" [buttonMethod]="doSomething"></app-button-click>
             <div class="input-content">
                 <label class="label" for="busqueda">Buscar:</label>
-                <input class="input" id="busqueda" [(ngModel)]="search" placeholder="Ingresa el codigo del producto">
+                <input class="input" id="busqueda" [(ngModel)]="search" placeholder="Ingresa el codigo de factura">
             </div>
 
             <div class="table-responsive">
