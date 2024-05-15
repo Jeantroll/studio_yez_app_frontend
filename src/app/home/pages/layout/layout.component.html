@@ -26,45 +26,51 @@
                             <input  type="text" placeholder="Search...">
                         </li>
                     </ul>
-    
+
                     <ul class="menu-links">
                         <li class="nav-link" (click)="isMobile? toggleClose(): ''" routerLinkActive="active">
                             <a routerLink="./home">
                                 <i class='bx bx-home-alt icon' ></i>
                                 <span class="text nav-text">Home</span>
                             </a>
-                        </li> 
-                        
+                        </li>
+
                         <li class="nav-link" (click)="isMobile? toggleClose(): ''" routerLinkActive="active">
                             <a routerLink="./ventas">
                                 <i class="fa-solid fa-file-invoice-dollar icon"></i>
                                 <span class="text nav-text">Ventas</span>
                             </a>
-                        </li> 
+                        </li>
 
                         <li class="nav-link" (click)="isMobile? toggleClose(): ''" routerLinkActive="active">
                             <a routerLink="./gastos">
                                 <i class="fa-solid fa-money-bill-wave icon"></i>
                                 <span class="text nav-text">Gastos</span>
                             </a>
-                        </li> 
+                        </li>
 
                         <li class="nav-link" (click)="isMobile? toggleClose(): ''" routerLinkActive="active">
                             <a routerLink="./productos">
                                 <i class="fa-brands fa-product-hunt icon"></i>
                                 <span class="text nav-text">Productos</span>
                             </a>
-                        </li> 
+                        </li>
 
                         <li class="nav-link" (click)="isMobile? toggleClose(): ''" routerLinkActive="active">
                             <a routerLink="./devolucion">
                                 <i class="fa-solid fa-right-left icon"></i>
                                 <span class="text nav-text">Devoluciones</span>
                             </a>
-                        </li> 
+                        </li>
 
+                        <li class="nav-link" (click)="isMobile? toggleClose(): ''" routerLinkActive="active">
+                          <a routerLink="./ingreso-mercancia">
+                            <i class="fa-solid fa-plus icon"></i>
+                            <span class="text nav-text">Ingreso de mercancía</span>
+                          </a>
+                      </li>
                         <!-- <li class="nav-link" routerLinkActive="active">
-                            <a routerLink="./inventario"> 
+                            <a routerLink="./inventario">
                                 <i class="fa-solid fa-receipt icon"></i>
                                 <span class="text nav-text">Inventario</span>
                             </a>
@@ -76,7 +82,7 @@
                                 <span class="text nav-text">Configuación</span>
                             </a>
                         </li> -->
-                        
+
                         <!-- <li class="nav-link" routerLinkActive="active">
                             <a routerLink="./facturacion">
                                 <i class="fa-solid fa-file-lines icon"></i>
@@ -85,9 +91,9 @@
                         </li>  -->
 
                     </ul>
-                    
+
                 </div>
-    
+
                 <div class="bottom-content">
                    <ul>
                     <li title="Cerrar sesión" class="nav-link" (click)="logout()">
@@ -97,7 +103,7 @@
                         </a>
                     </li>
                    </ul>
-    
+
                 </div>
             </div>
         </div>
@@ -118,7 +124,7 @@
                 <ul [ngClass]="isMood? 'change' : 'mode'">
                     <div class="toggle-switch" (click)="toggleTheme()">
                         <span class="switch">
-                            <span class="moon"><i class='bx bx-moon'></i></span>        
+                            <span class="moon"><i class='bx bx-moon'></i></span>
                             <span class="sun"><i class='bx bx-sun'></i></span>
                         </span>
                     </div>
@@ -128,7 +134,7 @@
                     <p class="user_name">Hola, <span>{{usuario.name}}</span></p>
                     <p class="user_rol">Bienvenido</p>
                 </div>
-                
+
                 <span class="avatar">
                     <!-- <img [src]="'https://creditoacr.com/wp-content/uploads/2023/08/468-4682069_darryl-cabin-specialist-user-icon-png-small-transparent.jpg'" alt=""> -->
                     <i class="fa-solid fa-circle-user"></i>
@@ -138,7 +144,7 @@
 
         </div>
 
-        <div class="home_route">     
+        <div class="home_route">
                 <router-outlet></router-outlet>
                 <app-loader></app-loader>
         </div>

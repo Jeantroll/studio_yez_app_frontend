@@ -12,6 +12,9 @@ import { BillsFormComponent } from './pages/bills-form/bills-form.component';
 import { ProductsFormComponent } from './pages/products-form/products-form.component';
 import { DevolucionesComponent } from './pages/devoluciones/devoluciones.component';
 import { DevolucionesFormComponent } from './pages/devoluciones-form/devoluciones-form.component';
+import { IngresoMercanciaFormComponent } from './pages/ingreso-mercancia-form/ingreso-mercancia-form.component';
+import { IngresoMercanciaComponent } from './pages/ingreso-mercancia/ingreso-mercancia.component';
+
 
 const routes: Routes = [
   {
@@ -65,6 +68,14 @@ const routes: Routes = [
       {
         path: 'devoluciones-form',
         component: DevolucionesFormComponent,
+      },
+      {
+        path: 'ingreso-mercancia',
+        component: IngresoMercanciaComponent,
+      },
+      {
+        path: 'ingreso-mercancia-form',
+        component: IngresoMercanciaFormComponent,
       },
       {
         path: '**',

@@ -17,6 +17,9 @@ import { ProductsFormComponent } from './pages/products-form/products-form.compo
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DevolucionesComponent } from './pages/devoluciones/devoluciones.component';
 import { DevolucionesFormComponent } from './pages/devoluciones-form/devoluciones-form.component';
+import { IngresoMercanciaFormComponent } from './pages/ingreso-mercancia-form/ingreso-mercancia-form.component';
+import { IngresoMercanciaComponent } from './pages/ingreso-mercancia/ingreso-mercancia.component';
+
 
 @NgModule({
   declarations: [
@@ -33,6 +36,8 @@ import { DevolucionesFormComponent } from './pages/devoluciones-form/devolucione
     ProductsFormComponent,
     DevolucionesComponent,
     DevolucionesFormComponent,
+    IngresoMercanciaFormComponent,
+    IngresoMercanciaComponent
   ],
   imports: [
     CommonModule,
