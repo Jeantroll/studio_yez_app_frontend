@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "acr_plus_clients_view:build:production"
+              "buildTarget": "acr_plus_clients_view:build:production"
             },
             "development": {
-              "browserTarget": "acr_plus_clients_view:build:development"
+              "buildTarget": "acr_plus_clients_view:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "acr_plus_clients_view:build"
+            "buildTarget": "acr_plus_clients_view:build"
           }
         },
         "test": {

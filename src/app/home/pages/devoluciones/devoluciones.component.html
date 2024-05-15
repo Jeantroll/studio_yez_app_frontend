@@ -2,12 +2,12 @@
 
     <div class="products-header">
 
-        
+
 
         <div class="products-header_pruduct">
             <span><i class="fa-solid fa-right-left icon"></i></span>
             <p>Devoluciones</p>
-            <p>Gestion de devoluciones</p>
+            <p>Gestion de devoluciones CLIENTE - ALMACÉN</p>
         </div>
 
     </div>
@@ -15,48 +15,45 @@
     <div>
         <div class="product-movements">
             <app-button-click label="Generar devolucion" [buttonMethod]="doSomething"></app-button-click>
-            <div class="input-content">
-                <label class="label" for="busqueda">Buscar:</label>
-                <input class="input" id="busqueda" [(ngModel)]="search" placeholder="Ingresa el codigo de factura">
-            </div>
 
             <div class="table-responsive">
                 <table>
                     <thead>
                         <tr>
-                            <th>Codigo</th>
-                            <th>Denominación</th>
-                            <th>Imagen</th>
-                            <th>Existente</th>
-                            <th>Por mayor</th>
-                            <th>Por unidad</th>
-                            <th>Editar</th>
+                            <th>producto_id</th>
+                            <th>cantidad</th>
+                            <th>precio_venta</th>
+                            <th>cliente</th>
+                            <th>fecha</th>
+                            <th>Id quien_recibe</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody *ngFor="let data of (data.data | searchSale:'codigo': search  | paginate: { itemsPerPage: 5, currentPage: p })">
                         <tr>
-                            <td><span><i class="fa-solid fa-hashtag"></i></span> <span>{{data.codigo}}</span></td>
-                            <td>{{data.denominacion}}</td>
-                            <td>{{data.imagen}}</td>
-                            <td>{{data.existente_en_almacen}}</td>
-                            <td>{{data.precio_por_mayor}}</td>
-                            <td>{{data.precio_por_unidad}}</td>
-                            <td routerLink="/home/productos-form/{{data.id}}" style="color: var(--secondary-color-1); font-size: 18px; cursor: pointer;"><i class="fa-regular fa-pen-to-square"></i></td>
+                            <td>{{data.producto_id}}</td>
+                            <td>{{data.cantidad}}</td>
+                            <td>{{data.precio_venta}}</td>
+                            <td>{{data.cliente}}</td>
+                            <td>{{data.fecha}}</td>
+                            <td>{{data.quien_recibe}}</td>
+                            <td>{{data.created_at}}</td>
+
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <pagination-controls 
+            <pagination-controls
             class="my-pagination"
             [directionLinks]="false"
-            (pageChange)="p = $event" 
+            (pageChange)="p = $event"
             previousLabel="Anterior"
-            nextLabel="Siguiente"  
-            [maxSize]="5" 
+            nextLabel="Siguiente"
+            [maxSize]="5"
             [responsive]="true"
             ></pagination-controls>
-            
+
 
         </div>
 

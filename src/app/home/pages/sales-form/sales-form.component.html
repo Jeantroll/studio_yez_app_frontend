@@ -12,7 +12,7 @@
                 </div>
             </div>
 
-    
+
 
            <div class="input-content">
             <label class="label" for="">Producto</label>
@@ -36,7 +36,7 @@
                             <th>Precio</th>
                             <th>Total</th>
                             <th>Eliminar</th>
-   
+
                         </tr>
                     </thead>
                     <tbody *ngFor="let data of productosFiltrados | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
@@ -60,19 +60,19 @@
                 </table>
             </div>
 
-            <pagination-controls 
+            <pagination-controls
             class="my-pagination"
             [directionLinks]="false"
-            (pageChange)="p = $event" 
+            (pageChange)="p = $event"
             previousLabel="Anterior"
-            nextLabel="Siguiente"  
-            [maxSize]="5" 
+            nextLabel="Siguiente"
+            [maxSize]="5"
             [responsive]="true"
             ></pagination-controls>
-     
 
-            <form *ngIf="isItemsArrayValid()" (ngSubmit)="getSubmit()" [formGroup]="saleForm" class="page slide-page flash">       
-    
+
+            <form *ngIf="isItemsArrayValid()" (ngSubmit)="getSubmit()" [formGroup]="saleForm" class="page slide-page flash">
+
                 <div class="content-inputs">
                     <app-input [form]="saleForm" [arrayInput]="arrayInput1">
                     </app-input>
@@ -80,15 +80,15 @@
                     </app-input>
                 </div>
 
-    
+
                 <div class="form-button">
                     <app-button [label]="'Generar venta'" [myForm]="saleForm"></app-button>
                 </div>
-    
-            </form>
-            
 
-       
+            </form>
+
+
+
 
         </div>
     </div>
@@ -96,4 +96,3 @@
 
 
 
-  

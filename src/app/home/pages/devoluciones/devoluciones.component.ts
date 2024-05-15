@@ -20,9 +20,9 @@ import { environments } from 'src/environments/environments';
 })
 export class DevolucionesComponent {
 
-    
-  private fb = inject(FormBuilder); 
-  private auth = inject(AuthService); 
+
+  private fb = inject(FormBuilder);
+  private auth = inject(AuthService);
   private apiPost = inject(ApiPostService);
   private modalService = inject(ModalService);
   private buttonService = inject(ButtonService);
@@ -36,7 +36,7 @@ export class DevolucionesComponent {
   public page: number = 0;
   p: number = 1;
 
-  
+
   constructor(
     private router: Router
   ) {}
@@ -44,35 +44,35 @@ export class DevolucionesComponent {
 
   public data: any = {};
   search: string = '';
-  
+
   private subscriptions$ = new Subscription();
 
 
   ngOnInit(): void {
-  
+
     this.loader.setLoader(true);
 
     let token;
     this.subscriptions$.add(
-      this.auth.getUsuario.subscribe(usuario => { 
-        token = 'Bearer '+ usuario.token; 
+      this.auth.getUsuario.subscribe(usuario => {
+        token = 'Bearer '+ usuario.token;
       })
     );
-    
-  
-    const UrlApi = `${this.baseUrl}/api/v1/productos`;
+
+
+    const UrlApi = `${this.baseUrl}/api/v1/devolucion-cliente-almacen`;
     const headers = {'Authorization': token};
 
     this.subscriptions$.add(
       this.apiGet.getDebtInfo(UrlApi, headers)
       .subscribe((resp)=>{
         console.log(resp);
-        
+
         this.loader.setLoader(false);
         this.data = resp
       })
     );
-    
+
   }
 
   ngOnDestroy(): void{
