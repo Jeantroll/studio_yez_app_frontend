@@ -118,18 +118,20 @@ export class IngresoMercanciaFormComponent implements OnInit, OnDestroy {
       cantidad_de_ingreso: formData.cantidad
     });
 
-    var requestOptions = {
+    var requestOptions: RequestInit = {
       method: 'POST',
       headers: myHeaders,
-      body: raw
+      body: raw,
+      mode: 'cors', // Asegura el modo CORS
+      credentials: 'include' // Enviar cookies con la solicitud si es necesario
     };
 
-    fetch(`${this.baseUrl}/api/v1/devolucion-cliente-almacen`, requestOptions)
+    fetch(`${this.baseUrl}/api/v1/ingreso-de-mercancia`, requestOptions)
       .then(response => response.json())
       .then(result => {
         console.log(result);
         this.buttonService.setCHange(false);
-        this.router.navigate(['/home/devolucion']);
+        this.router.navigate(['/home/ingreso-mercancia']);
       })
       .catch(error => {
         console.log(error)

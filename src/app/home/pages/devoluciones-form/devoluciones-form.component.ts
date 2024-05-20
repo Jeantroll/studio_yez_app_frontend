@@ -651,14 +651,21 @@ export class DevolucionesFormComponent {
       cantidad: this.obtenerDatosCombinados().length
     });
 
-    var requestOptions = {
+    var requestOptions: RequestInit = {
       method: 'POST',
       headers: myHeaders,
-      body: raw
+      body: raw,
+      mode: 'cors', // Asegura el modo CORS
+      credentials: 'include' // Enviar cookies con la solicitud si es necesario
     };
 
     fetch(`${this.baseUrl}/api/v1/devolucion-cliente-almacen`, requestOptions)
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+      })
       .then(result => {
         console.log(result);
         this.buttonService.setCHange(false);
@@ -666,24 +673,10 @@ export class DevolucionesFormComponent {
       })
       .catch(error => {
         this.buttonService.setCHange(false);
-        const newModalData: modalModel = {
-          viewModal: true,
-          clickOutside: true,
-          title: 'Atención',
-          colorIcon: 'red',
-          icon: 'fa-solid fa-triangle-exclamation',
-          message: 'Cantidad ha excedida con respecto a la existencia',
-          onMethod: () => {
-            newModalData.viewModal = false;
-          },
-          onMethodAction: () => {},
-          loader: false,
-          buttonText: 'Cerrar',
-        };
-
-        this.modalService.setArray(newModalData);
+        console.log('There has been a problem with your fetch operation:', error);
       });
   }
+
 
 
 
