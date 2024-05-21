@@ -21,6 +21,7 @@
                     <thead>
                         <tr>
                             <th>producto_id</th>
+                            <th>código de producto</th>
                             <th>fecha</th>
                             <th>cantidad_de_ingreso</th>
                             <th>created_at</th>
@@ -30,6 +31,7 @@
                     <tbody *ngFor="let data of (data.data | searchSale:'codigo': search  | paginate: { itemsPerPage: 5, currentPage: p })">
                         <tr>
                             <td>{{data.producto_id}}</td>
+                            <td>{{data.codigo}}</td>
                             <td>{{data.fecha}}</td>
                             <td>{{data.cantidad_de_ingreso}}</td>
                             <td>{{data.created_at}}</td>
