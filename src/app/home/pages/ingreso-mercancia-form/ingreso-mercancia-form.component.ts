@@ -109,7 +109,6 @@ export class IngresoMercanciaFormComponent implements OnInit, OnDestroy {
 
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('Authorization', this.token);
 
     var raw = JSON.stringify({
       producto_id: this.seleccionarProducto(event), // Asumiendo que solo hay un código de factura para todos los productos
@@ -125,7 +124,7 @@ export class IngresoMercanciaFormComponent implements OnInit, OnDestroy {
       credentials: 'include' // Enviar cookies con la solicitud si es necesario
     };
 
-    fetch(`${this.baseUrl}/api/v1/ingreso-de-mercancia`, requestOptions)
+    fetch(`${this.baseUrl}/api/ingreso-de-mercancia`, requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok ' + response.statusText);

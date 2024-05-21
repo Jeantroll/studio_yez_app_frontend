@@ -60,8 +60,8 @@ export class DevolucionesComponent {
     );
 
 
-    const UrlApi = `${this.baseUrl}/api/v1/devolucion-cliente-almacen`;
-    const headers = {'Authorization': token};
+    const UrlApi = `${this.baseUrl}/api/devolucion-cliente-almacen`;
+    const headers = {'Content-Type': 'application/json'};
 
     this.subscriptions$.add(
       this.apiGet.getDebtInfo(UrlApi, headers)

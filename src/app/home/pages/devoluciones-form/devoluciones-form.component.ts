@@ -643,7 +643,6 @@ export class DevolucionesFormComponent {
 
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('Authorization', this.token);
 
     var raw = JSON.stringify({
       codigo_factura: this.obtenerDatosCombinados()[0].codigo, // Asumiendo que solo hay un código de factura para todos los productos
@@ -659,7 +658,7 @@ export class DevolucionesFormComponent {
       credentials: 'include' // Enviar cookies con la solicitud si es necesario
     };
 
-    fetch(`${this.baseUrl}/api/v1/devolucion-cliente-almacen`, requestOptions)
+    fetch(`${this.baseUrl}/api/devolucion-cliente-almacen`, requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok ' + response.statusText);
