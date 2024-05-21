@@ -104,7 +104,6 @@ export class IngresoMercanciaFormComponent implements OnInit, OnDestroy {
     console.log(this.productoSeleccionado)
     return this.productoSeleccionado;
   }
-
   getSubmit() {
     const formData = this.productForm.getRawValue();
 
@@ -127,16 +126,23 @@ export class IngresoMercanciaFormComponent implements OnInit, OnDestroy {
     };
 
     fetch(`${this.baseUrl}/api/v1/ingreso-de-mercancia`, requestOptions)
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+      })
       .then(result => {
         console.log(result);
         this.buttonService.setCHange(false);
         this.router.navigate(['/home/ingreso-mercancia']);
       })
       .catch(error => {
-        console.log(error)
+        console.log('There has been a problem with your fetch operation:', error);
       });
   }
+
+
 
   ngOnDestroy(): void {
     this.subscriptions$.unsubscribe();

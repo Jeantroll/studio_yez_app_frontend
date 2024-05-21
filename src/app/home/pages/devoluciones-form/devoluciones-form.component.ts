@@ -674,6 +674,23 @@ export class DevolucionesFormComponent {
       .catch(error => {
         this.buttonService.setCHange(false);
         console.log('There has been a problem with your fetch operation:', error);
+
+        const newModalData: modalModel = {
+          viewModal: true,
+          clickOutside: true,
+          title: 'Atención',
+          colorIcon: 'red',
+          icon: 'fa-solid fa-triangle-exclamation',
+          message: error,
+          onMethod: () => {
+            newModalData.viewModal = false;
+          },
+          onMethodAction: () => {},
+          loader: false,
+          buttonText: 'Cerrar',
+        };
+
+        this.modalService.setArray(newModalData);
       });
   }
 
