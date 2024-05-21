@@ -60,7 +60,7 @@ export class DevolucionesComponent {
     );
 
 
-    const UrlApi = `${this.baseUrl}/api/v1/ingresodemercancia`;
+    const UrlApi = `${this.baseUrl}/api/v1/devolucionclientealmacen`;
     const headers = {'Authorization': token};
 
     this.subscriptions$.add(
