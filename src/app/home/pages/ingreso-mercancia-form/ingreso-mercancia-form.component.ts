@@ -104,40 +104,42 @@ export class IngresoMercanciaFormComponent implements OnInit, OnDestroy {
     console.log(this.productoSeleccionado)
     return this.productoSeleccionado;
   }
+
+
+
   getSubmit() {
     const formData = this.productForm.getRawValue();
 
-    var myHeaders = new Headers();
-    myHeaders.append('Authorization', this.token);
-
-    var raw = JSON.stringify({
-      producto_id: this.seleccionarProducto(event), // Asumiendo que solo hay un código de factura para todos los productos
-      fecha: formData.date, // Utilizamos el valor de this.seleccionarProducto(event) como el código del producto
-      cantidad_de_ingreso: formData.cantidad
-    });
-
-    var requestOptions: RequestInit = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
+    const headers = {
+      Authorization: this.token
     };
 
-    fetch(`${this.baseUrl}/api/v1/ingresodemercancia`, requestOptions)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok ' + response.statusText);
+    const paramsBody = {
+      producto_id: this.seleccionarProducto(event),
+      fecha: formData.date,
+      cantidad_de_ingreso: formData.cantidad
+    };
+
+    const UrlApi = `${this.baseUrl}/api/v1/ingresodemercancia`;
+
+    const apiObservable = this.apiPost.getDebtInfo(UrlApi, paramsBody, headers);
+
+    this.subscriptions$.add(
+      apiObservable.subscribe(
+        (resp) => {
+          console.log(resp);
+          this.buttonService.setCHange(false);
+          this.router.navigate(['/home/ingreso-mercancia']);
+        },
+        (error) => {
+          this.buttonService.setCHange(false);
+          console.log('There has been a problem with your fetch operation:', error);
+
         }
-        return response.json();
-      })
-      .then(result => {
-        console.log(result);
-        this.buttonService.setCHange(false);
-        this.router.navigate(['/home/ingreso-mercancia']);
-      })
-      .catch(error => {
-        console.log('There has been a problem with your fetch operation:', error);
-      });
+      )
+    );
   }
+
 
 
 

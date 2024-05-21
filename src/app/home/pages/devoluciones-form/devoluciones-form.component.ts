@@ -639,57 +639,53 @@ export class DevolucionesFormComponent {
   }
 
   getSubmit() {
-    console.log(this.obtenerDatosCombinados());
+    const headers = {
+      Authorization: this.token,
+    };
 
-    var myHeaders = new Headers();
-    myHeaders.append('Authorization', this.token);
-
-    var raw = JSON.stringify({
+    const paramsBody = {
       codigo_factura: this.obtenerDatosCombinados()[0].codigo, // Asumiendo que solo hay un código de factura para todos los productos
       codigo_producto: this.seleccionarProducto(event), // Utilizamos el valor de this.seleccionarProducto(event) como el código del producto
       cantidad: this.obtenerDatosCombinados().length
-    });
-
-    var requestOptions: RequestInit = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
     };
 
-    fetch(`${this.baseUrl}/api/v1/devolucionclientealmacen`, requestOptions)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok ' + response.statusText);
+    const UrlApi = `${this.baseUrl}/api/v1/devolucionclientealmacen`;
+
+    const apiObservable = this.apiPost.getDebtInfo(UrlApi, paramsBody, headers);
+
+    this.subscriptions$.add(
+      apiObservable.subscribe(
+        (resp) => {
+          console.log(resp);
+          this.buttonService.setCHange(false);
+          this.router.navigate(['/home/devolucion']);
+        },
+        (error) => {
+          this.buttonService.setCHange(false);
+          console.log('There has been a problem with your fetch operation:', error);
+
+          const newModalData: modalModel = {
+            viewModal: true,
+            clickOutside: true,
+            title: 'Atención',
+            colorIcon: 'red',
+            icon: 'fa-solid fa-triangle-exclamation',
+            message: error,
+            onMethod: () => {
+              newModalData.viewModal = false;
+            },
+            onMethodAction: () => {},
+            loader: false,
+            buttonText: 'Cerrar',
+          };
+
+          this.modalService.setArray(newModalData);
         }
-        return response.json();
-      })
-      .then(result => {
-        console.log(result);
-        this.buttonService.setCHange(false);
-        this.router.navigate(['/home/devolucion']);
-      })
-      .catch(error => {
-        this.buttonService.setCHange(false);
-        console.log('There has been a problem with your fetch operation:', error);
-
-        const newModalData: modalModel = {
-          viewModal: true,
-          clickOutside: true,
-          title: 'Atención',
-          colorIcon: 'red',
-          icon: 'fa-solid fa-triangle-exclamation',
-          message: error,
-          onMethod: () => {
-            newModalData.viewModal = false;
-          },
-          onMethodAction: () => {},
-          loader: false,
-          buttonText: 'Cerrar',
-        };
-
-        this.modalService.setArray(newModalData);
-      });
+      )
+    );
   }
+
+
 
 
 
