@@ -60,7 +60,7 @@ export class DevolucionesComponent {
     );
 
 
-    const UrlApi = `${this.baseUrl}/api/devolucion-cliente-almacen`;
+    const UrlApi = `${this.baseUrl}/api/devolucionclientealmacen`;
     const headers = {'Content-Type': 'application/json'};
 
     this.subscriptions$.add(

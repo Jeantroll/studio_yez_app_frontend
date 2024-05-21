@@ -656,7 +656,7 @@ export class DevolucionesFormComponent {
       body: raw,
     };
 
-    fetch(`${this.baseUrl}/api/devolucion-cliente-almacen`, requestOptions)
+    fetch(`${this.baseUrl}/api/devolucionclientealmacen`, requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok ' + response.statusText);

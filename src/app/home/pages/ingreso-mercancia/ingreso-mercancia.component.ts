@@ -60,7 +60,7 @@ export class IngresoMercanciaComponent {
     );
 
 
-    const UrlApi = `${this.baseUrl}/api/ingreso-de-mercancia`;
+    const UrlApi = `${this.baseUrl}/api/ingresodemercancia`;
     const headers = {'Content-Type': 'application/json'};
 
     this.subscriptions$.add(

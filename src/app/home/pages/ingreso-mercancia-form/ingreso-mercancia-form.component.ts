@@ -122,7 +122,7 @@ export class IngresoMercanciaFormComponent implements OnInit, OnDestroy {
       body: raw,
     };
 
-    fetch(`${this.baseUrl}/api/ingreso-de-mercancia`, requestOptions)
+    fetch(`${this.baseUrl}/api/ingresodemercancia`, requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok ' + response.statusText);
