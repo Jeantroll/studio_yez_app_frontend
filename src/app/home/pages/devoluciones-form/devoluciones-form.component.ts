@@ -654,8 +654,6 @@ export class DevolucionesFormComponent {
       method: 'POST',
       headers: myHeaders,
       body: raw,
-      mode: 'cors', // Asegura el modo CORS
-      credentials: 'include' // Enviar cookies con la solicitud si es necesario
     };
 
     fetch(`${this.baseUrl}/api/devolucion-cliente-almacen`, requestOptions)
