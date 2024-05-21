@@ -60,8 +60,8 @@ export class IngresoMercanciaComponent {
     );
 
 
-    const UrlApi = `${this.baseUrl}/api/ingresodemercancia`;
-    const headers = {'Content-Type': 'application/json'};
+    const UrlApi = `${this.baseUrl}/api/v1/ingresodemercancia`;
+    const headers = {'Authorization': token};
 
     this.subscriptions$.add(
       this.apiGet.getDebtInfo(UrlApi, headers)

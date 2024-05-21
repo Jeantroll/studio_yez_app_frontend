@@ -642,7 +642,7 @@ export class DevolucionesFormComponent {
     console.log(this.obtenerDatosCombinados());
 
     var myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append('Authorization', this.token);
 
     var raw = JSON.stringify({
       codigo_factura: this.obtenerDatosCombinados()[0].codigo, // Asumiendo que solo hay un código de factura para todos los productos
@@ -656,7 +656,7 @@ export class DevolucionesFormComponent {
       body: raw,
     };
 
-    fetch(`${this.baseUrl}/api/devolucionclientealmacen`, requestOptions)
+    fetch(`${this.baseUrl}/api/v1/devolucionclientealmacen`, requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok ' + response.statusText);
